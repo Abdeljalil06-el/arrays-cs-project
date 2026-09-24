@@ -9,26 +9,42 @@ public class BankAccount {
     int transactionsNumber=0;
 
     public BankAccount(String name, int startingBalance){
-
+        this.name=name;
+        this.currentBalance=startingBalance;
     }
 
     public void deposit(double amount){
-        if (amount<=0) System.out.println("Unseccessful deposits");
-        currentBalance+=amount;
-        transactions[transactionsNumber]=amount;
-        transactionsNumber+=1;
-        System.out.println("name : " + name +"\ndeposited amount : " + amount + "\nnew balnce : " + currentBalance);
+        if (amount<=0) 
+            {System.out.println("Unseccessful deposits");}
+        else{
+            currentBalance+=amount;
+            transactions[transactionsNumber]=amount;
+            transactionsNumber+=1;
+            System.out.println("name : " + name +"\ndeposited amount : " + amount + "\nnew balnce : " + currentBalance);
+        }
     }
 
     public void withdraw(double amount){
+        if (amount>currentBalance || amount<=0){
+            System.out.println("the withdraw was unsessceful");
+        }else{
+            currentBalance-=amount;
+        transactions[transactionsNumber]=-amount;
+        transactionsNumber++;
+        System.out.println("withdraw amount : " + amount + "\nnew balnce : " + currentBalance);
+        }
     }
 
     public void displayTransactions(){
+        System.out.println("the transactions : \n");
+        for (int i=0;i<transactionsNumber;i++){
+            System.out.println(transactions[i]);
+        }
 
     }
 
     public void displayBalance(){
-
+        System.out.println("the current balance : "+ currentBalance);
     }
 
     public static void main(String[] args) {
